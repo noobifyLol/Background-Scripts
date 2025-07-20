@@ -18,62 +18,55 @@ public class move implements NativeKeyListener {
     public static AtomicBoolean running = new AtomicBoolean(true);
     public static Robot robot;
     public static ScheduledExecutorService executor;
-    public static int i = 960;
+    public static int i = 960; 
+
     public static void main(String[] args) throws AWTException, NativeHookException {
         robot = new Robot();
         executor = Executors.newScheduledThreadPool(2);
-        
+
         try {
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeKeyListener(new move());
-            Thread.sleep(5000); // Initial delay
+
+            Thread.sleep(5000); // Initial delay for setup
+
             
-            // Continuous W key press/release
             executor.execute(() -> {
+                robot.keyPress(KeyEvent.VK_W);
                 while (running.get()) {
-                    robot.keyPress(KeyEvent.VK_W);
-                    
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
                 }
-                robot.keyRelease(KeyEvent.VK_RIGHT);
+                robot.keyRelease(KeyEvent.VK_W);
             });
-             executor.execute(() -> {
-                robot.mousePress(BUTTON3_DOWN_MASK);
-              });
 
-            // Right arrow key every 250ms
-            executor.scheduleAtFixedRate(() -> {
-                if (running.get()) {
-                   if (i != 700 ){
-                    for (; i> 700; i-=10){
-                    robot.mouseMove(960,540);
-                    
-                    
-                   }
-                }
-                }
-                else{
-                   robot.mouseRelease(BUTTON3_DOWN_MASK);
-                    i = 960;
-                }
-            }, 0, 250, TimeUnit.MILLISECONDS);
             
-            
+            executor.execute(() -> {
+                robot.mousePress(BUTTON3_DOWN_MASK);
+                executor.scheduleAtFixedRate(() -> {
+                    if (running.get()) {
+                        i += 8; 
+                        robot.mouseMove(i, 540);
+                    } else {
+                        robot.mouseRelease(BUTTON3_DOWN_MASK);
+                    }
+                }, 0, 28, TimeUnit.MILLISECONDS);
+            });
+
             while (running.get()) {
                 Thread.sleep(100);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             cleanUp();
         }
     }
-    
+
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
         if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
@@ -83,26 +76,18 @@ public class move implements NativeKeyListener {
             System.exit(0);
         }
     }
-    
+
     @Override
-    public void nativeKeyReleased(NativeKeyEvent e) {
-        
-    }
-    
+    public void nativeKeyReleased(NativeKeyEvent e) {}
     @Override
-    public void nativeKeyTyped(NativeKeyEvent e) {
-        
-    }
-    
+    public void nativeKeyTyped(NativeKeyEvent e) {}
+
     private static void cleanUp() {
-        running.set(false);
         try {
             executor.shutdownNow();
-            if (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
-                System.err.println("Executor did not terminate");
-            }
-            GlobalScreen.removeNativeKeyListener(new move());
             GlobalScreen.unregisterNativeHook();
+            robot.mouseRelease(BUTTON3_DOWN_MASK);
+            robot.keyRelease(KeyEvent.VK_W);
         } catch (Exception e) {
             e.printStackTrace();
         }
