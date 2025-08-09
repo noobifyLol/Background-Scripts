@@ -2,6 +2,7 @@ package frags;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -9,12 +10,14 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-import java.awt.event.InputEvent;
-public class 99dayseatingstew implements NativeKeyListener{
+/* This script is every situational if you want to get a high score in 99 Days which this program  allows when you reach the 
+ *max mutiplier and then you don't want to strave but you can optimize this code it pretty inefficent right now
+ */
+public class day99seatingstew implements NativeKeyListener{
+
+
     public static AtomicBoolean running = new AtomicBoolean(true);
    public static Robot robot;
-   
-   
     public static void main (String [] args) throws AWTException , Exception{
         robot = new Robot();
         try {
@@ -22,7 +25,7 @@ public class 99dayseatingstew implements NativeKeyListener{
         } catch (InterruptedException e) {
         
         }
-        GlobalScreen.addNativeKeyListener(new 99dayseatingstew());
+        GlobalScreen.addNativeKeyListener(new day99seatingstew());
         
         try {
            GlobalScreen.registerNativeHook();
@@ -99,7 +102,7 @@ public class 99dayseatingstew implements NativeKeyListener{
     private static void cleanUp() {
          
         try {
-             GlobalScreen.removeNativeKeyListener(new 99dayseatingstew());
+             GlobalScreen.removeNativeKeyListener(new day99seatingstew());
             GlobalScreen.unregisterNativeHook();
             running.set(false);
             

@@ -9,6 +9,7 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+/* More simplier verison of BGSAUTOHATCH that actually works */
 public class Quick implements NativeKeyListener{
     public static AtomicBoolean running = new AtomicBoolean(true);
    public static Robot robot;

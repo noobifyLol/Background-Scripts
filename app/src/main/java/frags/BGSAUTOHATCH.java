@@ -20,7 +20,7 @@ import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 
 import frags.BGSAUTOHATCH.SendInputHelper.User32Ext;
-
+ /* This one is broken! fix it if you want. Also for BGSI automatic background Sendinput hatching*/
 public class BGSAUTOHATCH implements NativeKeyListener {
     public static AtomicBoolean running = new AtomicBoolean(true);
     private static final int EXIT_KEY = NativeKeyEvent.VC_ESCAPE;
