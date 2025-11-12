@@ -15,7 +15,7 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-/* This script perfectly algins the Plinko shooting machine in the middle for the slot machine in Samuri Vs Zombies if you remember that game and then it just shoots for you */
+/*Samuri Plinko Machine script */
 public class SVZ implements NativeKeyListener {
     public static AtomicBoolean running = new AtomicBoolean(true);
     public static Robot robot;

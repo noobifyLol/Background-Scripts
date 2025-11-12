@@ -10,8 +10,8 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-/* This script is every situational if you want to get a high score in 99 Days which this program  allows when you reach the 
- *max mutiplier and then you don't want to strave but you can optimize this code it pretty inefficent right now
+/* This script is very situational if you want to get a high score in 99 Days which this program  allows when you reach the 
+ *max mutiplier and then you don't want to starve but you can optimize this code it pretty inefficent right now
  */
 public class day99seatingstew implements NativeKeyListener{
 

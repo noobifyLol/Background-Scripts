@@ -20,7 +20,7 @@ import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 
 import frags.BGSAUTOHATCH.SendInputHelper.User32Ext;
- /* This one is broken! fix it if you want. Also for BGSI automatic background Sendinput hatching*/
+ /* Broken */
 public class BGSAUTOHATCH implements NativeKeyListener {
     public static AtomicBoolean running = new AtomicBoolean(true);
     private static final int EXIT_KEY = NativeKeyEvent.VC_ESCAPE;
@@ -108,9 +108,9 @@ public class BGSAUTOHATCH implements NativeKeyListener {
             inputs[0].input.ki.dwFlags = 0;
             inputs[0].input.ki.time = 0;
             inputs[0].input.ki.dwExtraInfo = null;
-            inputs[0].write(); // write to native memory
+            inputs[0].write(); 
             
-            // Release key
+           
             inputs[1].type = INPUT_KEYBOARD;
             inputs[1].input.setType(KEYBDINPUT.class);
             inputs[1].input.ki = new KEYBDINPUT();
@@ -121,7 +121,7 @@ public class BGSAUTOHATCH implements NativeKeyListener {
             inputs[1].input.ki.dwExtraInfo = null;
             inputs[1].write(); 
 
-            // Call native function
+            
             User32Ext.INSTANCE.SendInput(inputs.length, inputs, inputs[0].size());
         }
 
@@ -170,9 +170,9 @@ public class BGSAUTOHATCH implements NativeKeyListener {
                 if (robloxWnd != null && SendInputHelper.inForeGround(robloxWnd)) {
                     
                     
-                    Thread.sleep(100); // Allow window to activate
-                    SendInputHelper.pressKey((short) 0x12);  // 'E' key
-                    Thread.sleep(100); // Allow key press processing
+                    Thread.sleep(100); 
+                    SendInputHelper.pressKey((short) 0x12);  
+                    Thread.sleep(100); 
                     
                 } else {
                     System.out.println("Roblox window not found!");

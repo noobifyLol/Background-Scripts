@@ -13,7 +13,7 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
-/* This one is for the BGSI 4th of July Event for the purple Tokens if you wanted to auto collect them when you're gone */
+/* BGSI 7/4/25 event */
 public class move implements NativeKeyListener {
     public static AtomicBoolean running = new AtomicBoolean(true);
     public static Robot robot;
